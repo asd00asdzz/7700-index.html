@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <title>ค้นหา</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      text-align: center;
+      margin-top: 100px;
+    }
+    input, button {
+      padding: 10px;
+      font-size: 18px;
+    }
+    #resultPage {
+      display: none;
+    }
+  </style>
+</head>
+<body>
+
+  <div id="main">
+    <h1>ค้นหา</h1>
+    <input type="text" id="searchInput" placeholder="พิมพ์คำที่ต้องการค้นหา">
+    <button onclick="goSearch()">ค้นหา</button>
+  </div>
+
+  <div id="resultPage">
+    <h2>ผลการค้นหา</h2>
+    <p id="resultText"></p>
+    <button onclick="goBack()">ย้อนกลับ</button>
+  </div>
+              
+  <script>
+    const data = {
+      "55": "เบอร์ติดต่อลูกบ้าน: 0000000000",
+      "บ้าน": "ข้อมูลเกี่ยวกับบ้าน",
+      "หมา": "ข้อมูลเกี่ยวกับหมา",
+      "แมว": "ข้อมูลเกี่ยวกับแมว",
+      // เพิ่มได้ถึง 1000 รายการ
+    };
+
+    function goSearch() {
+      const keyword = document.getElementById('searchInput').value.trim();
+      const result = data[keyword] || `ไม่พบข้อมูลที่เกี่ยวข้องกับ "${keyword}"`;
+
+      document.getElementById('resultText').textContent = result;
+      document.getElementById('main').style.display = 'none';
+      document.getElementById('resultPage').style.display = 'block';
+    }
+
+    function goBack() {
+      document.getElementById('resultPage').style.display = 'none';
+      document.getElementById('main').style.display = 'block';
+      document.getElementById('searchInput').value = "";
+    }
+  </script>
+
+</body>
+</html>
